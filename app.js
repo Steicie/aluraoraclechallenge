@@ -7,10 +7,10 @@ function embaralhar(array) {
 }
 
 function sortearAmigoSecreto(participantes) {
-    let sorteio = [participantes];
+    let sorteio = [...participantes];  // Cria uma cópia do array
     do {
-        sorteio = embaralhar([participantes]);
-    } while (sorteio.some((p, i) => p === participantes[i]));
+        sorteio = embaralhar(sorteio);  // Embaralha o array de sorteio
+    } while (sorteio.some((p, i) => p === participantes[i]));  // Garante que ninguém tire a si mesmo
 
     return participantes.map((p, i) => ({ amigo: p, sorteado: sorteio[i] }));
 }
@@ -35,7 +35,7 @@ document.getElementById("sortear").addEventListener("click", function () {
         return;
     }
 
-    const resultado = sortearAmigoSecreto(particiJpantes);
+    const resultado = sortearAmigoSecreto(participantes);  // Corrigido aqui
 
     const resultadoLista = document.getElementById("resultado");
     resultadoLista.innerHTML = ""; // Limpa resultados anteriores
@@ -45,4 +45,5 @@ document.getElementById("sortear").addEventListener("click", function () {
         resultadoLista.appendChild(item);
     });
 });
+
 
