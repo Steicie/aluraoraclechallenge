@@ -15,6 +15,7 @@ function sortearAmigoSecreto(participantes) {
     return participantes.map((p, i) => ({ amigo: p, sorteado: sorteio[i] }));
 }
 
+// Adiciona participantes à lista
 document.getElementById("adicionar").addEventListener("click", function () {
     const input = document.getElementById("participante").value.trim();
     if (input) {
@@ -26,17 +27,22 @@ document.getElementById("adicionar").addEventListener("click", function () {
     }
 });
 
+// Evento do botão Sortear
 document.getElementById("sortear").addEventListener("click", function () {
     const lista = document.querySelectorAll("#listaAmigos li");
     const participantes = Array.from(lista).map(li => li.textContent);
+
+    console.log("Participantes:", participantes);  // Verifica os participantes no console
 
     if (participantes.length < 2) {
         alert("É necessário pelo menos dois participantes para o sorteio.");
         return;
     }
 
-    const resultado = sortearAmigoSecreto(participantes);  // Corrigido aqui
+    const resultado = sortearAmigoSecreto(participantes);
+    console.log("Resultado do sorteio:", resultado);  // Verifica o resultado do sorteio no console
 
+    // Exibe os resultados na lista
     const resultadoLista = document.getElementById("resultado");
     resultadoLista.innerHTML = ""; // Limpa resultados anteriores
     resultado.forEach(par => {
