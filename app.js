@@ -7,9 +7,9 @@ function embaralhar(array) {
 }
 
 function sortearAmigoSecreto(participantes) {
-    let sorteio = [...participantes];
+    let sorteio = [participantes];
     do {
-        sorteio = embaralhar([...participantes]);
+        sorteio = embaralhar([participantes]);
     } while (sorteio.some((p, i) => p === participantes[i]));
 
     return participantes.map((p, i) => ({ amigo: p, sorteado: sorteio[i] }));
